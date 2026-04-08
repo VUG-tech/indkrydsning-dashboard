@@ -1,6 +1,5 @@
 // remote-content.js — hosted on GitHub, loaded by all devices automatically
-// Edit this file to update all devices without reinstalling the extension
-// Last updated: 2026-04-07
+// Last updated: 2026-04-09
 
 (function() {
   var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxxrLxhxZy46Ksjka-SWnrYBplymEnrcOrmTkv-0_N31hIOyHCBVojOSJGM0rxE0VJA6A/exec';
@@ -23,9 +22,63 @@
     var ua = navigator.userAgent;
     var isIpad = /iPad|Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
     var isOrion = /Orion/.test(ua);
-    var platform = isIpad ? 'iPad' : 'PC';
-    var browser = isOrion ? 'Orion' : 'Chrome';
-    return id + ' | ' + platform + ' | ' + browser + ' | ' + res;
+    return id + ' | ' + (isIpad ? 'iPad' : 'PC') + ' | ' + (isOrion ? 'Orion' : 'Chrome') + ' | ' + res;
+  }
+
+  // Get the best available storage API
+  function getAPI() {
+    try {
+      if (typeof browser !== 'undefined' && browser.storage && browser.storage.local) return browser;
+    } catch(e) {}
+    try {
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) return chrome;
+    } catch(e) {}
+    return null;
+  }
+
+  function getLocation(callback) {
+    // Try hardcoded location first (set by loader.js)
+    var hardcoded = null;
+    try { hardcoded = window._EK_LOCATION; } catch(e) {}
+    if (hardcoded) { callback(hardcoded); return; }
+
+    // Try localStorage
+    var lsLoc = null;
+    try { lsLoc = localStorage.getItem('ek_locationName'); } catch(e) {}
+
+    // Try storage API
+    var api = getAPI();
+    if (api) {
+      try {
+        api.storage.local.get('locationName', function(res) {
+          var loc = (res && res.locationName) ? res.locationName : lsLoc;
+          callback(loc || 'Ikke sat');
+        });
+        return;
+      } catch(e) {}
+    }
+    callback(lsLoc || 'Ikke sat');
+  }
+
+  function saveLog(entry) {
+    // Save to localStorage
+    try {
+      var log = JSON.parse(localStorage.getItem('ek_clickLog') || '[]');
+      log.push(entry);
+      localStorage.setItem('ek_clickLog', JSON.stringify(log));
+    } catch(e) {}
+
+    // Save to storage API
+    var api = getAPI();
+    if (api) {
+      try {
+        api.storage.local.get('clickLog', function(res) {
+          var log = (res && res.clickLog) ? res.clickLog : [];
+          log.push(entry);
+          api.storage.local.set({ clickLog: log });
+        });
+      } catch(e) {}
+    }
   }
 
   function sendToSheet(entry) {
@@ -45,47 +98,18 @@
     var timeStr = now.toLocaleTimeString('da-DK', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     var deviceInfo = getDeviceInfo();
 
-    function doSave(locName) {
+    getLocation(function(locName) {
       var entry = {
         type: type,
         date: dateStr,
         time: timeStr,
-        location: locName || 'Ikke sat',
+        location: locName,
         timestamp: now.toISOString(),
         device: deviceInfo
       };
-
-      try {
-        var api = (typeof browser !== 'undefined') ? browser : chrome;
-        api.storage.local.get(['clickLog', 'locationName'], function(res) {
-          var log = (res && res.clickLog) ? res.clickLog : [];
-          var loc = (res && res.locationName) ? res.locationName : (locName || 'Ikke sat');
-          entry.location = loc;
-          log.push(entry);
-          api.storage.local.set({ clickLog: log });
-          try { localStorage.setItem('ek_clickLog', JSON.stringify(log)); } catch(e) {}
-        });
-      } catch(e) {
-        try {
-          var log = JSON.parse(localStorage.getItem('ek_clickLog') || '[]');
-          var loc = localStorage.getItem('ek_locationName') || 'Ikke sat';
-          entry.location = loc;
-          log.push(entry);
-          localStorage.setItem('ek_clickLog', JSON.stringify(log));
-        } catch(e2) {}
-      }
-
+      saveLog(entry);
       sendToSheet(entry);
-    }
-
-    try {
-      var api = (typeof browser !== 'undefined') ? browser : chrome;
-      api.storage.local.get('locationName', function(res) {
-        doSave(res && res.locationName ? res.locationName : null);
-      });
-    } catch(e) {
-      doSave(localStorage.getItem('ek_locationName'));
-    }
+    });
   }
 
   document.addEventListener('click', function(e) {
