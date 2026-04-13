@@ -18,23 +18,9 @@
       --text: #2c3e50;
       --text-dim: #7f8c9a;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    header {
-      background: var(--navy);
-      padding: 18px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    header { background: var(--navy); padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; }
     .logo { font-size: 20px; font-weight: 700; color: #fff; }
     .logo span { color: var(--blue); }
     .header-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
@@ -43,118 +29,32 @@
     .dot.loading { background: #f0a500; animation: pulse 1s infinite; }
     .dot.error { background: #e05c4a; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
     .main { padding: 24px 32px; max-width: 1200px; margin: 0 auto; }
-
-    /* Filters */
-    .filters {
-      background: var(--surface);
-      border-radius: 10px;
-      padding: 18px 20px;
-      margin-bottom: 24px;
-      border: 1px solid var(--border);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: flex-end;
-    }
+    .filters { background: var(--surface); border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; border: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
     .filter-group { display: flex; flex-direction: column; gap: 5px; }
     .filter-group label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
-    .filter-group select,
-    .filter-group input[type="date"] {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      font-size: 13px;
-      padding: 7px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-      min-width: 130px;
-    }
-    .filter-group select:focus,
-    .filter-group input:focus { outline: 2px solid var(--blue); border-color: var(--blue); }
-
+    .filter-group select, .filter-group input[type="date"] { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); min-width: 130px; }
     .time-range { display: flex; gap: 8px; align-items: center; }
     .time-range span { font-size: 12px; color: var(--text-dim); }
-    .time-range input[type="time"] {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      font-size: 13px;
-      padding: 7px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .btn-reset {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      color: var(--text-dim);
-      cursor: pointer;
-      margin-left: auto;
-    }
+    .time-range input[type="time"] { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+    .btn-reset { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text-dim); cursor: pointer; margin-left: auto; }
     .btn-reset:hover { border-color: var(--blue); color: var(--blue); }
-
-    /* KPI cards */
-    .kpi-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .kpi-card {
-      background: var(--surface);
-      border-radius: 10px;
-      padding: 16px 20px;
-      border: 1px solid var(--border);
-    }
+    .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .kpi-card { background: var(--surface); border-radius: 10px; padding: 16px 20px; border: 1px solid var(--border); }
     .kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); margin-bottom: 6px; }
     .kpi-value { font-size: 32px; font-weight: 700; color: var(--text); }
     .kpi-sub { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
     .kpi-card.came .kpi-value { color: var(--came); }
     .kpi-card.left .kpi-value { color: var(--left); }
     .kpi-card.total .kpi-value { color: var(--blue); }
-
-    /* Charts */
-    .charts-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 24px;
-    }
+    .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
     @media (max-width: 700px) { .charts-row { grid-template-columns: 1fr; } }
-
-    .chart-card {
-      background: var(--surface);
-      border-radius: 10px;
-      padding: 20px;
-      border: 1px solid var(--border);
-    }
+    .chart-card { background: var(--surface); border-radius: 10px; padding: 20px; border: 1px solid var(--border); }
     .chart-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 16px; }
     .chart-wrap { position: relative; height: 260px; }
-
-    /* Timeline chart full width */
     .chart-card.full { grid-column: 1 / -1; }
-
-    /* Data table */
-    .table-card {
-      background: var(--surface);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .table-header {
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-    }
+    .table-card { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
+    .table-header { padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
     .table-title { font-size: 13px; font-weight: 700; }
     .table-count { font-size: 12px; color: var(--text-dim); }
     .table-wrap { overflow-x: auto; max-height: 300px; overflow-y: auto; }
@@ -164,37 +64,14 @@
     td { padding: 9px 16px; border-bottom: 1px solid #f0f2f4; }
     tr:last-child td { border-bottom: none; }
     tr:hover td { background: #f7f9fb; }
-    .tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 3px;
-      color: #fff;
-    }
+    .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 3px; color: #fff; }
     .tag.Kommet { background: var(--came); }
     .tag.Gået { background: var(--left); }
-    .loc-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 3px;
-      background: var(--navy);
-      color: #fff;
-    }
-
-    #no-data {
-      text-align: center;
-      padding: 40px;
-      color: var(--text-dim);
-      font-size: 14px;
-      display: none;
-    }
+    .loc-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; background: var(--navy); color: #fff; }
+    #no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
   </style>
 </head>
 <body>
-
 <header>
   <div>
     <div class="logo">Easy<span>Kom</span> Dashboard</div>
@@ -205,10 +82,7 @@
     <span id="sync-text">Henter data...</span>
   </div>
 </header>
-
 <div class="main">
-
-  <!-- Filters -->
   <div class="filters">
     <div class="filter-group">
       <label>Lokation</label>
@@ -245,128 +119,42 @@
     </div>
     <button class="btn-reset" id="btn-reset">↺ Nulstil filtre</button>
   </div>
-
-  <!-- KPI cards -->
   <div class="kpi-row">
-    <div class="kpi-card total">
-      <div class="kpi-label">Total</div>
-      <div class="kpi-value" id="kpi-total">—</div>
-      <div class="kpi-sub">registreringer</div>
-    </div>
-    <div class="kpi-card came">
-      <div class="kpi-label">Kommet</div>
-      <div class="kpi-value" id="kpi-came">—</div>
-      <div class="kpi-sub">check-in</div>
-    </div>
-    <div class="kpi-card left">
-      <div class="kpi-label">Gået</div>
-      <div class="kpi-value" id="kpi-left">—</div>
-      <div class="kpi-sub">check-out</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Aktive lokationer</div>
-      <div class="kpi-value" id="kpi-locs">—</div>
-      <div class="kpi-sub">i valgt periode</div>
-    </div>
+    <div class="kpi-card total"><div class="kpi-label">Total</div><div class="kpi-value" id="kpi-total">—</div><div class="kpi-sub">registreringer</div></div>
+    <div class="kpi-card came"><div class="kpi-label">Kommet</div><div class="kpi-value" id="kpi-came">—</div><div class="kpi-sub">check-in</div></div>
+    <div class="kpi-card left"><div class="kpi-label">Gået</div><div class="kpi-value" id="kpi-left">—</div><div class="kpi-sub">check-out</div></div>
+    <div class="kpi-card"><div class="kpi-label">Aktive lokationer</div><div class="kpi-value" id="kpi-locs">—</div><div class="kpi-sub">i valgt periode</div></div>
   </div>
-
-  <!-- Charts -->
   <div class="charts-row">
-    <div class="chart-card">
-      <div class="chart-title">Kommet vs Gået per lokation</div>
-      <div class="chart-wrap"><canvas id="chart-loc"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Fordeling per time på dagen</div>
-      <div class="chart-wrap"><canvas id="chart-hour"></canvas></div>
-    </div>
-    <div class="chart-card full">
-      <div class="chart-title">Aktivitet over tid (per dag)</div>
-      <div class="chart-wrap"><canvas id="chart-timeline"></canvas></div>
-    </div>
+    <div class="chart-card"><div class="chart-title">Kommet vs Gået per lokation</div><div class="chart-wrap"><canvas id="chart-loc"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Fordeling per time på dagen</div><div class="chart-wrap"><canvas id="chart-hour"></canvas></div></div>
+    <div class="chart-card full"><div class="chart-title">Aktivitet over tid (per dag)</div><div class="chart-wrap"><canvas id="chart-timeline"></canvas></div></div>
   </div>
-
-  <!-- Table -->
   <div class="table-card">
-    <div class="table-header">
-      <div class="table-title">Alle registreringer</div>
-      <div class="table-count" id="table-count"></div>
-    </div>
+    <div class="table-header"><div class="table-title">Alle registreringer</div><div class="table-count" id="table-count"></div></div>
     <div id="no-data">Ingen data matcher dine filtre.</div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Dato</th>
-            <th>Tid</th>
-            <th>Type</th>
-            <th>Lokation</th>
-          </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-      </table>
-    </div>
+    <div class="table-wrap"><table><thead><tr><th>#</th><th>Dato</th><th>Tid</th><th>Type</th><th>Lokation</th></tr></thead><tbody id="table-body"></tbody></table></div>
   </div>
-
 </div>
-
 <script>
-// ── CONFIG ──────────────────────────────────────────────────────────────────
 var SHEET_ID = '1aDO-EDMx9BQ5vPyTz2zpHAVT9ezQZc_nJec4DQUVW9k';
 var SHEET_NAME = 'Data Entry';
-// ────────────────────────────────────────────────────────────────────────────
-
 var allData = [];
 var charts = {};
 
-// Fetch data from Google Sheets public CSV export
-function fetchData() {
-  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
-  fetch(url)
-    .then(function(r) { return r.text(); })
-    .then(function(csv) {
-      allData = parseCSV(csv);
-      setStatus('active', 'Live data · ' + allData.length + ' rækker');
-      setDateDefaults();
-      render();
-    })
-    .catch(function(e) {
-      setStatus('error', 'Kunne ikke hente data');
-    });
+function toInputDate(d) {
+  if (!d) return '';
+  var mm = ('0'+(d.getMonth()+1)).slice(-2);
+  var dd = ('0'+d.getDate()).slice(-2);
+  return d.getFullYear() + '-' + mm + '-' + dd;
 }
 
-function parseCSV(csv) {
-  var lines = csv.trim().split('\n');
-  var result = [];
-  for (var i = 1; i < lines.length; i++) {
-    var cols = lines[i].split('","').map(function(c) { return c.replace(/^"|"$/g, '').trim(); });
-    if (cols.length < 5 || !cols[0]) continue;
-    var timeStr = (cols[2] || '').replace(/\./g, ':');
-    result.push({
-      timestamp: cols[0],
-      date: cols[1],
-      time: timeStr,
-      type: cols[3],
-      location: cols[4]
-    });
-  }
-  return result;
-}
-
-function setDateDefaults() {
-  if (!allData.length) return;
-  // Parse dates from da-DK format d.m.yyyy
-  var dates = allData.map(function(e) { return parseDanishDate(e.date); }).filter(Boolean).sort();
-  if (dates.length) {
-    document.getElementById('filter-from').value = toInputDate(dates[0]);
-    document.getElementById('filter-to').value = toInputDate(dates[dates.length-1]);
-  }
+function getTodayInputDate() {
+  return toInputDate(new Date());
 }
 
 function parseDanishDate(str) {
   if (!str) return null;
-  // Handle both d.m.yyyy and d/m/yyyy formats
   var parts = str.indexOf('.') > -1 ? str.split('.') : str.split('/');
   if (parts.length < 3) return null;
   var d = parseInt(parts[0]), m = parseInt(parts[1])-1, y = parseInt(parts[2]);
@@ -380,11 +168,34 @@ function dateToYMD(d) {
   return d.getFullYear() + '-' + mm + '-' + dd;
 }
 
-function toInputDate(d) {
-  if (!d) return '';
-  var mm = ('0'+(d.getMonth()+1)).slice(-2);
-  var dd = ('0'+d.getDate()).slice(-2);
-  return d.getFullYear() + '-' + mm + '-' + dd;
+function setDefaultDates() {
+  var today = getTodayInputDate();
+  document.getElementById('filter-from').value = today;
+  document.getElementById('filter-to').value = today;
+}
+
+function fetchData() {
+  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
+  fetch(url)
+    .then(function(r) { return r.text(); })
+    .then(function(csv) {
+      allData = parseCSV(csv);
+      setStatus('active', 'Live data · ' + allData.length + ' rækker');
+      render();
+    })
+    .catch(function() { setStatus('error', 'Kunne ikke hente data'); });
+}
+
+function parseCSV(csv) {
+  var lines = csv.trim().split('\n');
+  var result = [];
+  for (var i = 1; i < lines.length; i++) {
+    var cols = lines[i].split('","').map(function(c) { return c.replace(/^"|"$/g, '').trim(); });
+    if (cols.length < 5 || !cols[0]) continue;
+    var timeStr = (cols[2] || '').replace(/\./g, ':');
+    result.push({ timestamp: cols[0], date: cols[1], time: timeStr, type: cols[3], location: cols[4] });
+  }
+  return result;
 }
 
 function getFiltered() {
@@ -394,7 +205,6 @@ function getFiltered() {
   var to = document.getElementById('filter-to').value;
   var tFrom = document.getElementById('filter-time-from').value || '00:00';
   var tTo = document.getElementById('filter-time-to').value || '23:59';
-
   return allData.filter(function(e) {
     if (loc && e.location !== loc) return false;
     if (type && e.type !== type) return false;
@@ -416,16 +226,13 @@ function getFiltered() {
 
 function render() {
   var data = getFiltered();
-
-  // KPIs
   var came = data.filter(function(e) { return e.type === 'Kommet'; }).length;
   var left = data.filter(function(e) { return e.type === 'Gået'; }).length;
-  var locs = [...new Set(data.map(function(e) { return e.location; }).filter(Boolean))].length;
+  var locs = [].concat(data.map(function(e) { return e.location; })).filter(function(v, i, a) { return v && a.indexOf(v) === i; }).length;
   document.getElementById('kpi-total').textContent = data.length;
   document.getElementById('kpi-came').textContent = came;
   document.getElementById('kpi-left').textContent = left;
   document.getElementById('kpi-locs').textContent = locs;
-
   renderLocChart(data);
   renderHourChart(data);
   renderTimeline(data);
@@ -434,68 +241,33 @@ function render() {
 
 function renderLocChart(data) {
   var locations = ['ESK7', 'AB8', 'AB10'];
-  var cameData = locations.map(function(l) {
-    return data.filter(function(e) { return e.location === l && e.type === 'Kommet'; }).length;
-  });
-  var leftData = locations.map(function(l) {
-    return data.filter(function(e) { return e.location === l && e.type === 'Gået'; }).length;
-  });
-
+  var cameData = locations.map(function(l) { return data.filter(function(e) { return e.location === l && e.type === 'Kommet'; }).length; });
+  var leftData = locations.map(function(l) { return data.filter(function(e) { return e.location === l && e.type === 'Gået'; }).length; });
   if (charts.loc) charts.loc.destroy();
   charts.loc = new Chart(document.getElementById('chart-loc'), {
     type: 'bar',
-    data: {
-      labels: locations,
-      datasets: [
-        { label: 'Kommet', data: cameData, backgroundColor: '#2eaaa0', borderRadius: 4 },
-        { label: 'Gået', data: leftData, backgroundColor: '#e05c4a', borderRadius: 4 }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'top' } },
-      scales: { x: { stacked: false }, y: { beginAtZero: true, ticks: { stepSize: 1 } } }
-    }
+    data: { labels: locations, datasets: [{ label: 'Kommet', data: cameData, backgroundColor: '#2eaaa0', borderRadius: 4 }, { label: 'Gået', data: leftData, backgroundColor: '#e05c4a', borderRadius: 4 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: false }, y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
   });
 }
 
 function renderHourChart(data) {
   var hours = Array.from({length: 24}, function(_, i) { return i; });
-  var cameByHour = hours.map(function(h) {
-    return data.filter(function(e) {
-      return e.type === 'Kommet' && e.time && parseInt(e.time.split(':')[0]) === h;
-    }).length;
+  var activeHours = hours.filter(function(h) {
+    return data.some(function(e) { return e.time && parseInt(e.time.split(':')[0]) === h; });
   });
-  var leftByHour = hours.map(function(h) {
-    return data.filter(function(e) {
-      return e.type === 'Gået' && e.time && parseInt(e.time.split(':')[0]) === h;
-    }).length;
-  });
-
-  // Only show hours with data
-  var activeHours = hours.filter(function(h) { return cameByHour[h] > 0 || leftByHour[h] > 0; });
   var labels = activeHours.map(function(h) { return ('0'+h).slice(-2) + ':00'; });
-
+  var cameByHour = activeHours.map(function(h) { return data.filter(function(e) { return e.type === 'Kommet' && e.time && parseInt(e.time.split(':')[0]) === h; }).length; });
+  var leftByHour = activeHours.map(function(h) { return data.filter(function(e) { return e.type === 'Gået' && e.time && parseInt(e.time.split(':')[0]) === h; }).length; });
   if (charts.hour) charts.hour.destroy();
   charts.hour = new Chart(document.getElementById('chart-hour'), {
     type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [
-        { label: 'Kommet', data: activeHours.map(function(h) { return cameByHour[h]; }), backgroundColor: '#2eaaa0', borderRadius: 3 },
-        { label: 'Gået', data: activeHours.map(function(h) { return leftByHour[h]; }), backgroundColor: '#e05c4a', borderRadius: 3 }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'top' } },
-      scales: { x: { stacked: true }, y: { beginAtZero: true, ticks: { stepSize: 1 } } }
-    }
+    data: { labels: labels, datasets: [{ label: 'Kommet', data: cameByHour, backgroundColor: '#2eaaa0', borderRadius: 3 }, { label: 'Gået', data: leftByHour, backgroundColor: '#e05c4a', borderRadius: 3 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: true }, y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
   });
 }
 
 function renderTimeline(data) {
-  // Group by date
   var byDate = {};
   data.forEach(function(e) {
     if (!e.date) return;
@@ -503,25 +275,12 @@ function renderTimeline(data) {
     if (e.type === 'Kommet') byDate[e.date].Kommet++;
     if (e.type === 'Gået') byDate[e.date].Gået++;
   });
-  var dates = Object.keys(byDate).sort(function(a, b) {
-    return (parseDanishDate(a) || 0) - (parseDanishDate(b) || 0);
-  });
-
+  var dates = Object.keys(byDate).sort(function(a, b) { return (parseDanishDate(a) || 0) - (parseDanishDate(b) || 0); });
   if (charts.timeline) charts.timeline.destroy();
   charts.timeline = new Chart(document.getElementById('chart-timeline'), {
     type: 'line',
-    data: {
-      labels: dates,
-      datasets: [
-        { label: 'Kommet', data: dates.map(function(d) { return byDate[d].Kommet; }), borderColor: '#2eaaa0', backgroundColor: '#2eaaa020', tension: 0.3, fill: true, pointRadius: 4 },
-        { label: 'Gået', data: dates.map(function(d) { return byDate[d].Gået; }), borderColor: '#e05c4a', backgroundColor: '#e05c4a20', tension: 0.3, fill: true, pointRadius: 4 }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'top' } },
-      scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
-    }
+    data: { labels: dates, datasets: [{ label: 'Kommet', data: dates.map(function(d) { return byDate[d].Kommet; }), borderColor: '#2eaaa0', backgroundColor: '#2eaaa020', tension: 0.3, fill: true, pointRadius: 4 }, { label: 'Gået', data: dates.map(function(d) { return byDate[d].Gået; }), borderColor: '#e05c4a', backgroundColor: '#e05c4a20', tension: 0.3, fill: true, pointRadius: 4 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
   });
 }
 
@@ -529,24 +288,11 @@ function renderTable(data) {
   var tbody = document.getElementById('table-body');
   var noData = document.getElementById('no-data');
   document.getElementById('table-count').textContent = data.length + ' rækker';
-
-  if (data.length === 0) {
-    tbody.innerHTML = '';
-    noData.style.display = 'block';
-    return;
-  }
+  if (data.length === 0) { tbody.innerHTML = ''; noData.style.display = 'block'; return; }
   noData.style.display = 'none';
-
-  // Show newest first
   var sorted = data.slice().reverse();
   tbody.innerHTML = sorted.map(function(e, i) {
-    return '<tr>' +
-      '<td style="color:var(--text-dim)">' + (data.length - i) + '</td>' +
-      '<td>' + (e.date || '') + '</td>' +
-      '<td>' + (e.time || '') + '</td>' +
-      '<td><span class="tag ' + (e.type||'') + '">' + (e.type||'') + '</span></td>' +
-      '<td><span class="loc-badge">' + (e.location||'—') + '</span></td>' +
-    '</tr>';
+    return '<tr><td style="color:var(--text-dim)">' + (data.length - i) + '</td><td>' + (e.date||'') + '</td><td>' + (e.time||'') + '</td><td><span class="tag ' + (e.type||'') + '">' + (e.type||'') + '</span></td><td><span class="loc-badge">' + (e.location||'—') + '</span></td></tr>';
   }).join('');
 }
 
@@ -556,23 +302,37 @@ function setStatus(state, text) {
   document.getElementById('sync-text').textContent = text;
 }
 
-// Filter listeners
+// Filter listeners — only re-render, never reset dates
 ['filter-loc','filter-type','filter-from','filter-to','filter-time-from','filter-time-to'].forEach(function(id) {
   document.getElementById(id).addEventListener('change', render);
 });
 
+// Reset button — resets to TODAY not to data range
 document.getElementById('btn-reset').addEventListener('click', function() {
   document.getElementById('filter-loc').value = '';
   document.getElementById('filter-type').value = '';
   document.getElementById('filter-time-from').value = '00:00';
   document.getElementById('filter-time-to').value = '23:59';
-  setDateDefaults();
+  setDefaultDates();
   render();
 });
 
+// Set default dates to TODAY before fetching
+setDefaultDates();
 fetchData();
-// Refresh every 60 seconds
-setInterval(fetchData, 60000);
+
+// Auto-refresh every 60 seconds — only updates data, never touches filters
+setInterval(function() {
+  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
+  fetch(url)
+    .then(function(r) { return r.text(); })
+    .then(function(csv) {
+      allData = parseCSV(csv);
+      setStatus('active', 'Live data · ' + allData.length + ' rækker');
+      render(); // render with current filters, does NOT reset them
+    })
+    .catch(function() {});
+}, 60000);
 </script>
 </body>
 </html>
