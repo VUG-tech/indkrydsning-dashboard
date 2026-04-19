@@ -72,7 +72,7 @@
     .tag.Gået { background: var(--left); }
     .loc-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; background: var(--navy); color: #fff; }
     #no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
-
+ 
     /* ── SENSOR SEKTION ── */
     .sensor-section { margin-top: 40px; }
     .section-divider {
@@ -191,7 +191,7 @@
   </div>
 </header>
 <div class="main">
-
+ 
   <!-- ── EKSISTERENDE CHECK-IND/UD SEKTION ── -->
   <div class="filters">
     <div class="filter-group">
@@ -245,7 +245,7 @@
     <div id="no-data">Ingen data matcher dine filtre.</div>
     <div class="table-wrap"><table><thead><tr><th>#</th><th>Dato</th><th>Tid</th><th>Type</th><th>Lokation</th></tr></thead><tbody id="table-body"></tbody></table></div>
   </div>
-
+ 
   <!-- ── NY SENSOR SEKTION ── -->
   <div class="sensor-section">
     <div class="section-divider">
@@ -253,7 +253,7 @@
       <div class="section-divider-line"></div>
       <div class="section-divider-badge">Live belægning</div>
     </div>
-
+ 
     <div class="sensor-filter-row">
       <div class="filter-group">
         <label>Lokation</label>
@@ -269,7 +269,7 @@
         <input type="date" id="sensor-filter-dato">
       </div>
     </div>
-
+ 
     <div class="sensor-kpi-row">
       <div class="sensor-kpi-card belaegning">
         <div class="kpi-label">Inde nu</div>
@@ -295,7 +295,7 @@
         <div class="kpi-sub">valgt dato</div>
       </div>
     </div>
-
+ 
     <div class="sensor-log-card">
       <div class="sensor-log-header">
         <div class="table-title">Sensorlog</div>
@@ -318,27 +318,27 @@
       </div>
     </div>
   </div>
-
+ 
 </div>
-
+ 
 <script>
 // ── CHECK-IND/UD ──
 var SHEET_ID = '1aDO-EDMx9BQ5vPyTz2zpHAVT9ezQZc_nJec4DQUVW9k';
 var SHEET_NAME = 'Sheet1';
 var allData = [];
 var charts = {};
-
+ 
 function toInputDate(d) {
   if (!d) return '';
   var mm = ('0'+(d.getMonth()+1)).slice(-2);
   var dd = ('0'+d.getDate()).slice(-2);
   return d.getFullYear() + '-' + mm + '-' + dd;
 }
-
+ 
 function getTodayInputDate() {
   return toInputDate(new Date());
 }
-
+ 
 function parseDanishDate(str) {
   if (!str) return null;
   var parts = str.indexOf('.') > -1 ? str.split('.') : str.split('/');
@@ -347,19 +347,19 @@ function parseDanishDate(str) {
   if (isNaN(d) || isNaN(m) || isNaN(y)) return null;
   return new Date(y, m, d);
 }
-
+ 
 function dateToYMD(d) {
   var mm = ('0'+(d.getMonth()+1)).slice(-2);
   var dd = ('0'+d.getDate()).slice(-2);
   return d.getFullYear() + '-' + mm + '-' + dd;
 }
-
+ 
 function setDefaultDates() {
   var today = getTodayInputDate();
   document.getElementById('filter-from').value = today;
   document.getElementById('filter-to').value = today;
 }
-
+ 
 function fetchData() {
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
   fetch(url)
@@ -371,7 +371,7 @@ function fetchData() {
     })
     .catch(function() { setStatus('error', 'Kunne ikke hente data'); });
 }
-
+ 
 function parseCSV(csv) {
   var lines = csv.trim().split('\n');
   var result = [];
@@ -383,7 +383,7 @@ function parseCSV(csv) {
   }
   return result;
 }
-
+ 
 function getFiltered() {
   var loc = document.getElementById('filter-loc').value;
   var type = document.getElementById('filter-type').value;
@@ -409,7 +409,7 @@ function getFiltered() {
     return true;
   });
 }
-
+ 
 function render() {
   var data = getFiltered();
   var came = data.filter(function(e) { return e.type === 'Kommet'; }).length;
@@ -424,7 +424,7 @@ function render() {
   renderTimeline(data);
   renderTable(data);
 }
-
+ 
 function renderLocChart(data) {
   var locations = ['ESK7', 'AB8', 'AB10'];
   var cameData = locations.map(function(l) { return data.filter(function(e) { return e.location === l && e.type === 'Kommet'; }).length; });
@@ -436,7 +436,7 @@ function renderLocChart(data) {
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: false }, y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
   });
 }
-
+ 
 function renderHourChart(data) {
   var hours = Array.from({length: 24}, function(_, i) { return i; });
   var activeHours = hours.filter(function(h) {
@@ -452,7 +452,7 @@ function renderHourChart(data) {
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: true }, y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
   });
 }
-
+ 
 function renderTimeline(data) {
   var byDate = {};
   data.forEach(function(e) {
@@ -469,7 +469,7 @@ function renderTimeline(data) {
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
   });
 }
-
+ 
 function renderTable(data) {
   var tbody = document.getElementById('table-body');
   var noData = document.getElementById('no-data');
@@ -481,17 +481,17 @@ function renderTable(data) {
     return '<tr><td style="color:var(--text-dim)">' + (data.length - i) + '</td><td>' + (e.date||'') + '</td><td>' + (e.time||'') + '</td><td><span class="tag ' + (e.type||'') + '">' + (e.type||'') + '</span></td><td><span class="loc-badge">' + (e.location||'—') + '</span></td></tr>';
   }).join('');
 }
-
+ 
 function setStatus(state, text) {
   var dot = document.getElementById('sync-dot');
   dot.className = 'dot ' + (state === 'active' ? '' : state);
   document.getElementById('sync-text').textContent = text;
 }
-
+ 
 ['filter-loc','filter-type','filter-from','filter-to','filter-time-from','filter-time-to'].forEach(function(id) {
   document.getElementById(id).addEventListener('change', render);
 });
-
+ 
 document.getElementById('btn-reset').addEventListener('click', function() {
   document.getElementById('filter-loc').value = '';
   document.getElementById('filter-type').value = '';
@@ -500,10 +500,10 @@ document.getElementById('btn-reset').addEventListener('click', function() {
   setDefaultDates();
   render();
 });
-
+ 
 setDefaultDates();
 fetchData();
-
+ 
 setInterval(function() {
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
   fetch(url)
@@ -515,85 +515,108 @@ setInterval(function() {
     })
     .catch(function() {});
 }, 60000);
-
+ 
 // ── SENSOR ──
-var SENSOR_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzvXbwmUqh5fwpU-crqMdFGfhfKb923OpQ6ETlxnoz8y8OF4ECitk__9KTYbsaq4r4ddA/exec';
-
+var SENSOR_SHEET_NAME = 'Occupancy';
+var allSensorData = [];
+ 
 function sensorDagensDato() {
   return new Date().toISOString().split('T')[0];
 }
-
+ 
 function hentSensorData() {
-  var loc  = document.getElementById('sensor-filter-loc').value;
-  var dato = document.getElementById('sensor-filter-dato').value || sensorDagensDato();
-  var url  = SENSOR_WEBHOOK + '?action=history&location=' + encodeURIComponent(loc) + '&dato=' + encodeURIComponent(dato);
-
+  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SENSOR_SHEET_NAME);
   fetch(url)
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (!Array.isArray(data)) { setSensorOffline(); return; }
-
-      var ind = 0, ud = 0;
-      data.forEach(function(r) {
-        if (r.direction === 'IND') ind++;
-        else if (r.direction === 'UD') ud++;
-      });
-
-      var belaegning = Math.max(0, ind - ud);
-      document.getElementById('sensor-belaegning').textContent = belaegning;
-      document.getElementById('sensor-ind').textContent = ind;
-      document.getElementById('sensor-ud').textContent = ud;
-      document.getElementById('sensor-total').textContent = ind + ud;
-
-      // Status
+    .then(function(r) { return r.text(); })
+    .then(function(csv) {
+      allSensorData = parseSensorCSV(csv);
       document.getElementById('sensor-dot').className = 'sensor-dot';
       document.getElementById('sensor-status-text').textContent = 'Opdateret ' + new Date().toLocaleTimeString('da-DK', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-
-      // Tabel — vis nyeste øverst, kun IND/UD (ikke heartbeats)
-      var tbody = document.getElementById('sensor-table-body');
-      var noData = document.getElementById('sensor-no-data');
-      var passager = data.filter(function(r) { return r.direction === 'IND' || r.direction === 'UD'; });
-
-      document.getElementById('sensor-log-count').textContent = passager.length + ' passager';
-
-      if (passager.length === 0) {
-        tbody.innerHTML = '';
-        noData.style.display = 'block';
-        return;
-      }
-      noData.style.display = 'none';
-
-      var sorted = passager.slice().reverse();
-      tbody.innerHTML = sorted.map(function(r, i) {
-        var tidStr = r.tidsstempel ? r.tidsstempel.split(' ')[1] || r.tidsstempel : '—';
-        var dirLabel = r.direction === 'IND' ? '→ IND' : '← UD';
-        return '<tr>'
-          + '<td style="color:var(--text-dim)">' + (passager.length - i) + '</td>'
-          + '<td>' + tidStr + '</td>'
-          + '<td><span class="loc-badge">' + (r.location || '—') + '</span></td>'
-          + '<td><span class="tag ' + r.direction + '">' + dirLabel + '</span></td>'
-          + '<td style="text-align:right">' + r.count + '</td>'
-          + '</tr>';
-      }).join('');
+      renderSensor();
     })
     .catch(function() { setSensorOffline(); });
 }
-
+ 
+function parseSensorCSV(csv) {
+  var lines = csv.trim().split('\n');
+  var result = [];
+  for (var i = 1; i < lines.length; i++) {
+    var cols = lines[i].split('","').map(function(c) { return c.replace(/^"|"$/g, '').trim(); });
+    if (cols.length < 4 || !cols[0]) continue;
+    // Kolonner: A=Tidsstempel, B=Lokation, C=Antal, D=Retning, E=Dato, F=Klokkeslet
+    result.push({
+      tidsstempel: cols[0],
+      location:    cols[1],
+      count:       cols[2],
+      direction:   cols[3],
+      dato:        cols[4] || '',
+      klokkeslet:  cols[5] || ''
+    });
+  }
+  return result;
+}
+ 
+function renderSensor() {
+  var loc  = document.getElementById('sensor-filter-loc').value;
+  var dato = document.getElementById('sensor-filter-dato').value || sensorDagensDato();
+ 
+  var filtered = allSensorData.filter(function(r) {
+    return r.location === loc && r.dato === dato;
+  });
+ 
+  var ind = 0, ud = 0;
+  filtered.forEach(function(r) {
+    if (r.direction === 'IND') ind++;
+    else if (r.direction === 'UD') ud++;
+  });
+ 
+  var belaegning = Math.max(0, ind - ud);
+  document.getElementById('sensor-belaegning').textContent = belaegning;
+  document.getElementById('sensor-ind').textContent = ind;
+  document.getElementById('sensor-ud').textContent = ud;
+  document.getElementById('sensor-total').textContent = ind + ud;
+ 
+  var tbody  = document.getElementById('sensor-table-body');
+  var noData = document.getElementById('sensor-no-data');
+  var passager = filtered.filter(function(r) { return r.direction === 'IND' || r.direction === 'UD'; });
+ 
+  document.getElementById('sensor-log-count').textContent = passager.length + ' passager';
+ 
+  if (passager.length === 0) {
+    tbody.innerHTML = '';
+    noData.style.display = 'block';
+    return;
+  }
+  noData.style.display = 'none';
+ 
+  var sorted = passager.slice().reverse();
+  tbody.innerHTML = sorted.map(function(r, i) {
+    var dirLabel = r.direction === 'IND' ? '→ IND' : '← UD';
+    return '<tr>'
+      + '<td style="color:var(--text-dim)">' + (passager.length - i) + '</td>'
+      + '<td>' + (r.klokkeslet || r.tidsstempel || '—') + '</td>'
+      + '<td><span class="loc-badge">' + (r.location || '—') + '</span></td>'
+      + '<td><span class="tag ' + r.direction + '">' + dirLabel + '</span></td>'
+      + '<td style="text-align:right">' + r.count + '</td>'
+      + '</tr>';
+  }).join('');
+}
+ 
 function setSensorOffline() {
   document.getElementById('sensor-dot').className = 'sensor-dot offline';
   document.getElementById('sensor-status-text').textContent = 'Ingen forbindelse';
 }
-
+ 
 // Sæt standarddato til i dag
 document.getElementById('sensor-filter-dato').value = sensorDagensDato();
-
-// Lyt på filterændringer
-document.getElementById('sensor-filter-loc').addEventListener('change', hentSensorData);
-document.getElementById('sensor-filter-dato').addEventListener('change', hentSensorData);
-
-// Start og auto-refresh hvert 10. sekund
+ 
+// Lyt på filterændringer — re-render uden nyt fetch
+document.getElementById('sensor-filter-loc').addEventListener('change', renderSensor);
+document.getElementById('sensor-filter-dato').addEventListener('change', renderSensor);
+ 
+// Start og auto-refresh hvert 30. sekund
 hentSensorData();
-setInterval(hentSensorData, 10000);
+setInterval(hentSensorData, 30000);
 </script>
 </body>
 </html>
