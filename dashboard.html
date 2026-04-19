@@ -17,6 +17,9 @@
       --border: #d0d5db;
       --text: #2c3e50;
       --text-dim: #7f8c9a;
+      --sensor-ind: #2eaaa0;
+      --sensor-ud: #e05c4a;
+      --sensor-accent: #4aaee0;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -69,6 +72,111 @@
     .tag.Gået { background: var(--left); }
     .loc-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; background: var(--navy); color: #fff; }
     #no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
+
+    /* ── SENSOR SEKTION ── */
+    .sensor-section { margin-top: 40px; }
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-divider-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .section-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-divider-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--navy);
+      color: #fff;
+      white-space: nowrap;
+    }
+    .sensor-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .sensor-kpi-card {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .sensor-kpi-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .sensor-kpi-card.belaegning::after { background: var(--sensor-accent); }
+    .sensor-kpi-card.sensor-ind::after { background: var(--sensor-ind); }
+    .sensor-kpi-card.sensor-ud::after { background: var(--sensor-ud); }
+    .sensor-kpi-card.sensor-total::after { background: #aaa; }
+    .sensor-kpi-card.belaegning .kpi-value { color: var(--sensor-accent); font-size: 40px; }
+    .sensor-kpi-card.sensor-ind .kpi-value { color: var(--sensor-ind); }
+    .sensor-kpi-card.sensor-ud .kpi-value { color: var(--sensor-ud); }
+    .sensor-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .sensor-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4ae0a0;
+      animation: pulse 2s infinite;
+    }
+    .sensor-dot.offline { background: var(--left); animation: none; }
+    .sensor-log-card {
+      background: var(--surface);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .sensor-log-header {
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .sensor-log-wrap {
+      overflow-x: auto;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+    .sensor-log-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tag.IND { background: var(--sensor-ind); color: #fff; }
+    .tag.UD { background: var(--sensor-ud); color: #fff; }
+    .tag.heartbeat { background: #dde2e8; color: var(--text-dim); }
+    #sensor-no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
+    .sensor-filter-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .sensor-filter-row .filter-group select {
+      min-width: 160px;
+    }
   </style>
 </head>
 <body>
@@ -83,6 +191,8 @@
   </div>
 </header>
 <div class="main">
+
+  <!-- ── EKSISTERENDE CHECK-IND/UD SEKTION ── -->
   <div class="filters">
     <div class="filter-group">
       <label>Lokation</label>
@@ -135,10 +245,86 @@
     <div id="no-data">Ingen data matcher dine filtre.</div>
     <div class="table-wrap"><table><thead><tr><th>#</th><th>Dato</th><th>Tid</th><th>Type</th><th>Lokation</th></tr></thead><tbody id="table-body"></tbody></table></div>
   </div>
+
+  <!-- ── NY SENSOR SEKTION ── -->
+  <div class="sensor-section">
+    <div class="section-divider">
+      <div class="section-divider-title">Indgangssensor</div>
+      <div class="section-divider-line"></div>
+      <div class="section-divider-badge">Live belægning</div>
+    </div>
+
+    <div class="sensor-filter-row">
+      <div class="filter-group">
+        <label>Lokation</label>
+        <select id="sensor-filter-loc">
+          <option value="HJEMMETEST">HJEMMETEST</option>
+          <option value="AB8">AB8</option>
+          <option value="ESK7">ESK7</option>
+          <option value="AB10">AB10</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Dato</label>
+        <input type="date" id="sensor-filter-dato">
+      </div>
+    </div>
+
+    <div class="sensor-kpi-row">
+      <div class="sensor-kpi-card belaegning">
+        <div class="kpi-label">Inde nu</div>
+        <div class="kpi-value" id="sensor-belaegning">—</div>
+        <div class="sensor-status">
+          <div class="sensor-dot" id="sensor-dot"></div>
+          <span id="sensor-status-text">Henter...</span>
+        </div>
+      </div>
+      <div class="sensor-kpi-card sensor-ind">
+        <div class="kpi-label">Passager ind</div>
+        <div class="kpi-value" id="sensor-ind">—</div>
+        <div class="kpi-sub">valgt dato</div>
+      </div>
+      <div class="sensor-kpi-card sensor-ud">
+        <div class="kpi-label">Passager ud</div>
+        <div class="kpi-value" id="sensor-ud">—</div>
+        <div class="kpi-sub">valgt dato</div>
+      </div>
+      <div class="sensor-kpi-card sensor-total">
+        <div class="kpi-label">Total passager</div>
+        <div class="kpi-value" id="sensor-total">—</div>
+        <div class="kpi-sub">valgt dato</div>
+      </div>
+    </div>
+
+    <div class="sensor-log-card">
+      <div class="sensor-log-header">
+        <div class="table-title">Sensorlog</div>
+        <div class="table-count" id="sensor-log-count"></div>
+      </div>
+      <div id="sensor-no-data">Ingen sensordata for valgt dato og lokation.</div>
+      <div class="sensor-log-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tidspunkt</th>
+              <th>Lokation</th>
+              <th>Retning</th>
+              <th style="text-align:right">Belægning</th>
+            </tr>
+          </thead>
+          <tbody id="sensor-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 </div>
+
 <script>
+// ── CHECK-IND/UD ──
 var SHEET_ID = '1aDO-EDMx9BQ5vPyTz2zpHAVT9ezQZc_nJec4DQUVW9k';
-var SHEET_NAME = 'Data Entry';
+var SHEET_NAME = 'Sheet1';
 var allData = [];
 var charts = {};
 
@@ -302,12 +488,10 @@ function setStatus(state, text) {
   document.getElementById('sync-text').textContent = text;
 }
 
-// Filter listeners — only re-render, never reset dates
 ['filter-loc','filter-type','filter-from','filter-to','filter-time-from','filter-time-to'].forEach(function(id) {
   document.getElementById(id).addEventListener('change', render);
 });
 
-// Reset button — resets to TODAY not to data range
 document.getElementById('btn-reset').addEventListener('click', function() {
   document.getElementById('filter-loc').value = '';
   document.getElementById('filter-type').value = '';
@@ -317,11 +501,9 @@ document.getElementById('btn-reset').addEventListener('click', function() {
   render();
 });
 
-// Set default dates to TODAY before fetching
 setDefaultDates();
 fetchData();
 
-// Auto-refresh every 60 seconds — only updates data, never touches filters
 setInterval(function() {
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
   fetch(url)
@@ -329,10 +511,89 @@ setInterval(function() {
     .then(function(csv) {
       allData = parseCSV(csv);
       setStatus('active', 'Live data · ' + allData.length + ' rækker');
-      render(); // render with current filters, does NOT reset them
+      render();
     })
     .catch(function() {});
 }, 60000);
+
+// ── SENSOR ──
+var SENSOR_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzvXbwmUqh5fwpU-crqMdFGfhfKb923OpQ6ETlxnoz8y8OF4ECitk__9KTYbsaq4r4ddA/exec';
+
+function sensorDagensDato() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function hentSensorData() {
+  var loc  = document.getElementById('sensor-filter-loc').value;
+  var dato = document.getElementById('sensor-filter-dato').value || sensorDagensDato();
+  var url  = SENSOR_WEBHOOK + '?action=history&location=' + encodeURIComponent(loc) + '&dato=' + encodeURIComponent(dato);
+
+  fetch(url)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!Array.isArray(data)) { setSensorOffline(); return; }
+
+      var ind = 0, ud = 0;
+      data.forEach(function(r) {
+        if (r.direction === 'IND') ind++;
+        else if (r.direction === 'UD') ud++;
+      });
+
+      var belaegning = Math.max(0, ind - ud);
+      document.getElementById('sensor-belaegning').textContent = belaegning;
+      document.getElementById('sensor-ind').textContent = ind;
+      document.getElementById('sensor-ud').textContent = ud;
+      document.getElementById('sensor-total').textContent = ind + ud;
+
+      // Status
+      document.getElementById('sensor-dot').className = 'sensor-dot';
+      document.getElementById('sensor-status-text').textContent = 'Opdateret ' + new Date().toLocaleTimeString('da-DK', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+
+      // Tabel — vis nyeste øverst, kun IND/UD (ikke heartbeats)
+      var tbody = document.getElementById('sensor-table-body');
+      var noData = document.getElementById('sensor-no-data');
+      var passager = data.filter(function(r) { return r.direction === 'IND' || r.direction === 'UD'; });
+
+      document.getElementById('sensor-log-count').textContent = passager.length + ' passager';
+
+      if (passager.length === 0) {
+        tbody.innerHTML = '';
+        noData.style.display = 'block';
+        return;
+      }
+      noData.style.display = 'none';
+
+      var sorted = passager.slice().reverse();
+      tbody.innerHTML = sorted.map(function(r, i) {
+        var tidStr = r.tidsstempel ? r.tidsstempel.split(' ')[1] || r.tidsstempel : '—';
+        var dirLabel = r.direction === 'IND' ? '→ IND' : '← UD';
+        return '<tr>'
+          + '<td style="color:var(--text-dim)">' + (passager.length - i) + '</td>'
+          + '<td>' + tidStr + '</td>'
+          + '<td><span class="loc-badge">' + (r.location || '—') + '</span></td>'
+          + '<td><span class="tag ' + r.direction + '">' + dirLabel + '</span></td>'
+          + '<td style="text-align:right">' + r.count + '</td>'
+          + '</tr>';
+      }).join('');
+    })
+    .catch(function() { setSensorOffline(); });
+}
+
+function setSensorOffline() {
+  document.getElementById('sensor-dot').className = 'sensor-dot offline';
+  document.getElementById('sensor-status-text').textContent = 'Ingen forbindelse';
+}
+
+// Sæt standarddato til i dag
+document.getElementById('sensor-filter-dato').value = sensorDagensDato();
+
+// Lyt på filterændringer
+document.getElementById('sensor-filter-loc').addEventListener('change', hentSensorData);
+document.getElementById('sensor-filter-dato').addEventListener('change', hentSensorData);
+
+// Start og auto-refresh hvert 10. sekund
+hentSensorData();
+setInterval(hentSensorData, 10000);
 </script>
 </body>
 </html>
