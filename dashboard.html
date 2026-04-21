@@ -65,118 +65,33 @@
     thead tr { background: var(--bg); position: sticky; top: 0; }
     th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); border-bottom: 1px solid var(--border); }
     td { padding: 9px 16px; border-bottom: 1px solid #f0f2f4; }
-    tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #f7f9fb; }
     .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 3px; color: #fff; }
     .tag.Kommet { background: var(--came); }
     .tag.Gået { background: var(--left); }
     .loc-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; background: var(--navy); color: #fff; }
     #no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
- 
+
     /* ── SENSOR SEKTION ── */
     .sensor-section { margin-top: 40px; }
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .section-divider-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      white-space: nowrap;
-    }
-    .section-divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    .section-divider-badge {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-      background: var(--navy);
-      color: #fff;
-      white-space: nowrap;
-    }
-    .sensor-kpi-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .sensor-kpi-card {
-      background: var(--surface);
-      border-radius: 10px;
-      padding: 16px 20px;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .sensor-kpi-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-    }
+    .section-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .section-divider-title { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; }
+    .section-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .section-divider-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--navy); color: #fff; white-space: nowrap; }
+    .sensor-kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .sensor-kpi-card { background: var(--surface); border-radius: 10px; padding: 16px 20px; border: 1px solid var(--border); position: relative; overflow: hidden; }
+    .sensor-kpi-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .sensor-kpi-card.belaegning::after { background: var(--sensor-accent); }
     .sensor-kpi-card.sensor-ind::after { background: var(--sensor-ind); }
     .sensor-kpi-card.sensor-ud::after { background: var(--sensor-ud); }
     .sensor-kpi-card.sensor-total::after { background: #aaa; }
     .sensor-kpi-card.belaegning .kpi-value { color: var(--sensor-accent); font-size: 40px; }
-    .sensor-kpi-card.sensor-ind .kpi-value { color: var(--sensor-ind); }
-    .sensor-kpi-card.sensor-ud .kpi-value { color: var(--sensor-ud); }
-    .sensor-status {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-top: 4px;
-    }
-    .sensor-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #4ae0a0;
-      animation: pulse 2s infinite;
-    }
+    .sensor-status { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+    .sensor-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ae0a0; animation: pulse 2s infinite; }
     .sensor-dot.offline { background: var(--left); animation: none; }
-    .sensor-log-card {
-      background: var(--surface);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .sensor-log-header {
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-    }
-    .sensor-log-wrap {
-      overflow-x: auto;
-      max-height: 280px;
-      overflow-y: auto;
-    }
-    .sensor-log-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; }
     .tag.IND { background: var(--sensor-ind); color: #fff; }
     .tag.UD { background: var(--sensor-ud); color: #fff; }
-    .tag.heartbeat { background: #dde2e8; color: var(--text-dim); }
-    #sensor-no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
-    .sensor-filter-row {
-      display: flex;
-      gap: 12px;
-      align-items: flex-end;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .sensor-filter-row .filter-group select {
-      min-width: 160px;
-    }
+    .sensor-filter-row { display: flex; gap: 12px; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; }
+    .sensor-log-card { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
   </style>
 </head>
 <body>
@@ -191,8 +106,6 @@
   </div>
 </header>
 <div class="main">
- 
-  <!-- ── EKSISTERENDE CHECK-IND/UD SEKTION ── -->
   <div class="filters">
     <div class="filter-group">
       <label>Lokation</label>
@@ -245,15 +158,13 @@
     <div id="no-data">Ingen data matcher dine filtre.</div>
     <div class="table-wrap"><table><thead><tr><th>#</th><th>Dato</th><th>Tid</th><th>Type</th><th>Lokation</th></tr></thead><tbody id="table-body"></tbody></table></div>
   </div>
- 
-  <!-- ── NY SENSOR SEKTION ── -->
+
   <div class="sensor-section">
     <div class="section-divider">
       <div class="section-divider-title">Indgangssensor</div>
       <div class="section-divider-line"></div>
       <div class="section-divider-badge">Live belægning</div>
     </div>
- 
     <div class="sensor-filter-row">
       <div class="filter-group">
         <label>Lokation</label>
@@ -269,7 +180,6 @@
         <input type="date" id="sensor-filter-dato">
       </div>
     </div>
- 
     <div class="sensor-kpi-row">
       <div class="sensor-kpi-card belaegning">
         <div class="kpi-label">Inde nu</div>
@@ -282,108 +192,87 @@
       <div class="sensor-kpi-card sensor-ind">
         <div class="kpi-label">Passager ind</div>
         <div class="kpi-value" id="sensor-ind">—</div>
-        <div class="kpi-sub">valgt dato</div>
       </div>
       <div class="sensor-kpi-card sensor-ud">
         <div class="kpi-label">Passager ud</div>
         <div class="kpi-value" id="sensor-ud">—</div>
-        <div class="kpi-sub">valgt dato</div>
       </div>
       <div class="sensor-kpi-card sensor-total">
         <div class="kpi-label">Total passager</div>
         <div class="kpi-value" id="sensor-total">—</div>
-        <div class="kpi-sub">valgt dato</div>
       </div>
     </div>
- 
+    
+    <div class="chart-card" style="margin-bottom: 24px;">
+      <div class="chart-title">Belægningshistorik (Sensor)</div>
+      <div class="chart-wrap"><canvas id="chart-sensor-history"></canvas></div>
+    </div>
+
     <div class="sensor-log-card">
-      <div class="sensor-log-header">
-        <div class="table-title">Sensorlog</div>
-        <div class="table-count" id="sensor-log-count"></div>
-      </div>
-      <div id="sensor-no-data">Ingen sensordata for valgt dato og lokation.</div>
-      <div class="sensor-log-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Tidspunkt</th>
-              <th>Lokation</th>
-              <th>Retning</th>
-              <th style="text-align:right">Belægning</th>
-            </tr>
-          </thead>
-          <tbody id="sensor-table-body"></tbody>
-        </table>
-      </div>
+      <div class="table-header"><div class="table-title">Sensorlog</div><div class="table-count" id="sensor-log-count"></div></div>
+      <div id="sensor-no-data" style="text-align: center; padding: 20px; display:none;">Ingen sensordata.</div>
+      <div class="table-wrap"><table><thead><tr><th>#</th><th>Tidspunkt</th><th>Lokation</th><th>Retning</th><th style="text-align:right">Belægning</th></tr></thead><tbody id="sensor-table-body"></tbody></table></div>
     </div>
   </div>
- 
 </div>
- 
+
 <script>
-// ── CHECK-IND/UD ──
+// ── CHECK-IND/UD LOGIK (URØRT SOM AFTALT) ──
 var SHEET_ID = '1aDO-EDMx9BQ5vPyTz2zpHAVT9ezQZc_nJec4DQUVW9k';
 var SHEET_NAME = 'Sheet1';
 var allData = [];
 var charts = {};
- 
+
 function toInputDate(d) {
   if (!d) return '';
   var mm = ('0'+(d.getMonth()+1)).slice(-2);
   var dd = ('0'+d.getDate()).slice(-2);
   return d.getFullYear() + '-' + mm + '-' + dd;
 }
- 
-function getTodayInputDate() {
-  return toInputDate(new Date());
-}
- 
+
+function getTodayInputDate() { return toInputDate(new Date()); }
+
 function parseDanishDate(str) {
   if (!str) return null;
   var parts = str.indexOf('.') > -1 ? str.split('.') : str.split('/');
   if (parts.length < 3) return null;
   var d = parseInt(parts[0]), m = parseInt(parts[1])-1, y = parseInt(parts[2]);
-  if (isNaN(d) || isNaN(m) || isNaN(y)) return null;
   return new Date(y, m, d);
 }
- 
+
 function dateToYMD(d) {
   var mm = ('0'+(d.getMonth()+1)).slice(-2);
   var dd = ('0'+d.getDate()).slice(-2);
   return d.getFullYear() + '-' + mm + '-' + dd;
 }
- 
+
 function setDefaultDates() {
   var today = getTodayInputDate();
   document.getElementById('filter-from').value = today;
   document.getElementById('filter-to').value = today;
 }
- 
+
 function fetchData() {
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
-  fetch(url)
-    .then(function(r) { return r.text(); })
-    .then(function(csv) {
-      allData = parseCSV(csv);
-      setStatus('active', 'Live data · ' + allData.length + ' rækker');
-      render();
-    })
-    .catch(function() { setStatus('error', 'Kunne ikke hente data'); });
+  fetch(url).then(r => r.text()).then(csv => {
+    allData = parseCSV(csv);
+    setStatus('active', 'Live data · ' + allData.length + ' rækker');
+    render();
+  }).catch(() => setStatus('error', 'Kunne ikke hente data'));
 }
- 
+
 function parseCSV(csv) {
   var lines = csv.trim().split('\n');
   var result = [];
   for (var i = 1; i < lines.length; i++) {
-    var cols = lines[i].split('","').map(function(c) { return c.replace(/^"|"$/g, '').trim(); });
+    var cols = lines[i].split('","').map(c => c.replace(/^"|"$/g, '').trim());
     if (cols.length < 5 || !cols[0]) continue;
     var timeStr = (cols[2] || '').replace(/\./g, ':');
     result.push({ timestamp: cols[0], date: cols[1], time: timeStr, type: cols[3], location: cols[4] });
   }
   return result;
 }
- 
+
 function getFiltered() {
   var loc = document.getElementById('filter-loc').value;
   var type = document.getElementById('filter-type').value;
@@ -391,7 +280,7 @@ function getFiltered() {
   var to = document.getElementById('filter-to').value;
   var tFrom = document.getElementById('filter-time-from').value || '00:00';
   var tTo = document.getElementById('filter-time-to').value || '23:59';
-  return allData.filter(function(e) {
+  return allData.filter(e => {
     if (loc && e.location !== loc) return false;
     if (type && e.type !== type) return false;
     if (from || to) {
@@ -402,220 +291,129 @@ function getFiltered() {
         if (to && ymd > to) return false;
       }
     }
-    if (e.time) {
-      if (e.time < tFrom) return false;
-      if (e.time > tTo) return false;
-    }
+    if (e.time && (e.time < tFrom || e.time > tTo)) return false;
     return true;
   });
 }
- 
+
 function render() {
   var data = getFiltered();
-  var came = data.filter(function(e) { return e.type === 'Kommet'; }).length;
-  var left = data.filter(function(e) { return e.type === 'Gået'; }).length;
-  var locs = [].concat(data.map(function(e) { return e.location; })).filter(function(v, i, a) { return v && a.indexOf(v) === i; }).length;
   document.getElementById('kpi-total').textContent = data.length;
-  document.getElementById('kpi-came').textContent = came;
-  document.getElementById('kpi-left').textContent = left;
-  document.getElementById('kpi-locs').textContent = locs;
-  renderLocChart(data);
-  renderHourChart(data);
-  renderTimeline(data);
-  renderTable(data);
+  document.getElementById('kpi-came').textContent = data.filter(e => e.type === 'Kommet').length;
+  document.getElementById('kpi-left').textContent = data.filter(e => e.type === 'Gået').length;
+  document.getElementById('kpi-locs').textContent = [...new Set(data.map(e => e.location))].length;
+  renderLocChart(data); renderHourChart(data); renderTimeline(data); renderTable(data);
 }
- 
+
 function renderLocChart(data) {
   var locations = ['ESK7', 'AB8', 'AB10'];
-  var cameData = locations.map(function(l) { return data.filter(function(e) { return e.location === l && e.type === 'Kommet'; }).length; });
-  var leftData = locations.map(function(l) { return data.filter(function(e) { return e.location === l && e.type === 'Gået'; }).length; });
+  var cameData = locations.map(l => data.filter(e => e.location === l && e.type === 'Kommet').length);
+  var leftData = locations.map(l => data.filter(e => e.location === l && e.type === 'Gået').length);
   if (charts.loc) charts.loc.destroy();
   charts.loc = new Chart(document.getElementById('chart-loc'), {
     type: 'bar',
-    data: { labels: locations, datasets: [{ label: 'Kommet', data: cameData, backgroundColor: '#2eaaa0', borderRadius: 4 }, { label: 'Gået', data: leftData, backgroundColor: '#e05c4a', borderRadius: 4 }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: false }, y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+    data: { labels: locations, datasets: [{ label: 'Kommet', data: cameData, backgroundColor: '#2eaaa0' }, { label: 'Gået', data: leftData, backgroundColor: '#e05c4a' }] },
+    options: { responsive: true, maintainAspectRatio: false }
   });
 }
- 
+
 function renderHourChart(data) {
-  var hours = Array.from({length: 24}, function(_, i) { return i; });
-  var activeHours = hours.filter(function(h) {
-    return data.some(function(e) { return e.time && parseInt(e.time.split(':')[0]) === h; });
-  });
-  var labels = activeHours.map(function(h) { return ('0'+h).slice(-2) + ':00'; });
-  var cameByHour = activeHours.map(function(h) { return data.filter(function(e) { return e.type === 'Kommet' && e.time && parseInt(e.time.split(':')[0]) === h; }).length; });
-  var leftByHour = activeHours.map(function(h) { return data.filter(function(e) { return e.type === 'Gået' && e.time && parseInt(e.time.split(':')[0]) === h; }).length; });
+  var hours = Array.from({length: 24}, (_, i) => i);
+  var labels = hours.map(h => ('0'+h).slice(-2) + ':00');
+  var cameByHour = hours.map(h => data.filter(e => e.type === 'Kommet' && e.time && parseInt(e.time.split(':')[0]) === h).length);
+  var leftByHour = hours.map(h => data.filter(e => e.type === 'Gået' && e.time && parseInt(e.time.split(':')[0]) === h).length);
   if (charts.hour) charts.hour.destroy();
   charts.hour = new Chart(document.getElementById('chart-hour'), {
     type: 'bar',
-    data: { labels: labels, datasets: [{ label: 'Kommet', data: cameByHour, backgroundColor: '#2eaaa0', borderRadius: 3 }, { label: 'Gået', data: leftByHour, backgroundColor: '#e05c4a', borderRadius: 3 }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: true }, y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+    data: { labels: labels, datasets: [{ label: 'Kommet', data: cameByHour, backgroundColor: '#2eaaa0' }, { label: 'Gået', data: leftByHour, backgroundColor: '#e05c4a' }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true } } }
   });
 }
- 
+
 function renderTimeline(data) {
   var byDate = {};
-  data.forEach(function(e) {
-    if (!e.date) return;
-    if (!byDate[e.date]) byDate[e.date] = { Kommet: 0, Gået: 0 };
-    if (e.type === 'Kommet') byDate[e.date].Kommet++;
-    if (e.type === 'Gået') byDate[e.date].Gået++;
-  });
-  var dates = Object.keys(byDate).sort(function(a, b) { return (parseDanishDate(a) || 0) - (parseDanishDate(b) || 0); });
+  data.forEach(e => { if (!byDate[e.date]) byDate[e.date] = { Kommet: 0, Gået: 0 }; byDate[e.date][e.type]++; });
+  var dates = Object.keys(byDate).sort((a, b) => (parseDanishDate(a) || 0) - (parseDanishDate(b) || 0));
   if (charts.timeline) charts.timeline.destroy();
   charts.timeline = new Chart(document.getElementById('chart-timeline'), {
     type: 'line',
-    data: { labels: dates, datasets: [{ label: 'Kommet', data: dates.map(function(d) { return byDate[d].Kommet; }), borderColor: '#2eaaa0', backgroundColor: '#2eaaa020', tension: 0.3, fill: true, pointRadius: 4 }, { label: 'Gået', data: dates.map(function(d) { return byDate[d].Gået; }), borderColor: '#e05c4a', backgroundColor: '#e05c4a20', tension: 0.3, fill: true, pointRadius: 4 }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+    data: { labels: dates, datasets: [{ label: 'Kommet', data: dates.map(d => byDate[d].Kommet), borderColor: '#2eaaa0' }, { label: 'Gået', data: dates.map(d => byDate[d].Gået), borderColor: '#e05c4a' }] },
+    options: { responsive: true, maintainAspectRatio: false }
   });
 }
- 
+
 function renderTable(data) {
   var tbody = document.getElementById('table-body');
-  var noData = document.getElementById('no-data');
   document.getElementById('table-count').textContent = data.length + ' rækker';
-  if (data.length === 0) { tbody.innerHTML = ''; noData.style.display = 'block'; return; }
-  noData.style.display = 'none';
-  var sorted = data.slice().reverse();
-  tbody.innerHTML = sorted.map(function(e, i) {
-    return '<tr><td style="color:var(--text-dim)">' + (data.length - i) + '</td><td>' + (e.date||'') + '</td><td>' + (e.time||'') + '</td><td><span class="tag ' + (e.type||'') + '">' + (e.type||'') + '</span></td><td><span class="loc-badge">' + (e.location||'—') + '</span></td></tr>';
-  }).join('');
+  tbody.innerHTML = data.slice().reverse().map((e, i) => `<tr><td>${data.length-i}</td><td>${e.date}</td><td>${e.time}</td><td><span class="tag ${e.type}">${e.type}</span></td><td><span class="loc-badge">${e.location}</span></td></tr>`).join('');
 }
- 
+
 function setStatus(state, text) {
-  var dot = document.getElementById('sync-dot');
-  dot.className = 'dot ' + (state === 'active' ? '' : state);
+  document.getElementById('sync-dot').className = 'dot ' + (state === 'active' ? '' : state);
   document.getElementById('sync-text').textContent = text;
 }
- 
-['filter-loc','filter-type','filter-from','filter-to','filter-time-from','filter-time-to'].forEach(function(id) {
-  document.getElementById(id).addEventListener('change', render);
-});
- 
-document.getElementById('btn-reset').addEventListener('click', function() {
-  document.getElementById('filter-loc').value = '';
-  document.getElementById('filter-type').value = '';
-  document.getElementById('filter-time-from').value = '00:00';
-  document.getElementById('filter-time-to').value = '23:59';
-  setDefaultDates();
-  render();
-});
- 
-setDefaultDates();
-fetchData();
- 
-setInterval(function() {
-  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
-  fetch(url)
-    .then(function(r) { return r.text(); })
-    .then(function(csv) {
-      allData = parseCSV(csv);
-      setStatus('active', 'Live data · ' + allData.length + ' rækker');
-      render();
-    })
-    .catch(function() {});
-}, 60000);
- 
-// ── SENSOR ──
+
+// ── SENSOR LOGIK ──
 var SENSOR_SHEET_NAME = 'Occupancy';
 var allSensorData = [];
- 
-function sensorDagensDato() {
-  return new Date().toISOString().split('T')[0];
-}
- 
+
 function hentSensorData() {
   var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SENSOR_SHEET_NAME);
-  fetch(url)
-    .then(function(r) { return r.text(); })
-    .then(function(csv) {
-      allSensorData = parseSensorCSV(csv);
-      document.getElementById('sensor-dot').className = 'sensor-dot';
-      document.getElementById('sensor-status-text').textContent = 'Opdateret ' + new Date().toLocaleTimeString('da-DK', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-      renderSensor();
-    })
-    .catch(function() { setSensorOffline(); });
+  fetch(url).then(r => r.text()).then(csv => {
+    allSensorData = parseSensorCSV(csv);
+    document.getElementById('sensor-status-text').textContent = 'Opdateret ' + new Date().toLocaleTimeString();
+    renderSensor();
+  });
 }
- 
+
 function parseSensorCSV(csv) {
-  var lines = csv.trim().split('\n');
-  var result = [];
-  for (var i = 1; i < lines.length; i++) {
-    var cols = lines[i].split('","').map(function(c) { return c.replace(/^"|"$/g, '').trim(); });
-    if (cols.length < 4 || !cols[0]) continue;
-    // Kolonner: A=Tidsstempel, B=Lokation, C=Antal, D=Retning, E=Dato, F=Klokkeslet
-    result.push({
-      tidsstempel: cols[0],
-      location:    cols[1],
-      count:       cols[2],
-      direction:   cols[3],
-      dato:        cols[4] || '',
-      klokkeslet:  cols[5] || ''
-    });
-  }
-  return result;
+  return csv.trim().split('\n').slice(1).map(line => {
+    var cols = line.split('","').map(c => c.replace(/^"|"$/g, '').trim());
+    return { ts: cols[0], location: cols[1], count: cols[2], direction: cols[3], dato: cols[4], klokkeslet: cols[5] };
+  });
 }
- 
+
 function renderSensor() {
-  var loc  = document.getElementById('sensor-filter-loc').value;
-  var dato = document.getElementById('sensor-filter-dato').value || sensorDagensDato();
- 
-  var filtered = allSensorData.filter(function(r) {
-    return r.location === loc && r.dato === dato;
+  var loc = document.getElementById('sensor-filter-loc').value;
+  var dato = document.getElementById('sensor-filter-dato').value;
+  var filtered = allSensorData.filter(r => r.location === loc && r.dato === dato).sort((a,b) => a.ts.localeCompare(b.ts));
+
+  let ind = 0, ud = 0, current = 0, labels = [], history = [];
+  filtered.forEach(r => {
+    if (r.direction === 'IND') { ind++; current++; } else { ud++; current = Math.max(0, current-1); }
+    labels.push(r.klokkeslet); history.push(current);
   });
- 
-  var ind = 0, ud = 0;
-  filtered.forEach(function(r) {
-    if (r.direction === 'IND') ind++;
-    else if (r.direction === 'UD') ud++;
-  });
- 
-  var belaegning = Math.max(0, ind - ud);
-  document.getElementById('sensor-belaegning').textContent = belaegning;
+
+  document.getElementById('sensor-belaegning').textContent = current;
   document.getElementById('sensor-ind').textContent = ind;
   document.getElementById('sensor-ud').textContent = ud;
   document.getElementById('sensor-total').textContent = ind + ud;
- 
-  var tbody  = document.getElementById('sensor-table-body');
-  var noData = document.getElementById('sensor-no-data');
-  var passager = filtered.filter(function(r) { return r.direction === 'IND' || r.direction === 'UD'; });
- 
-  document.getElementById('sensor-log-count').textContent = passager.length + ' passager';
- 
-  if (passager.length === 0) {
-    tbody.innerHTML = '';
-    noData.style.display = 'block';
-    return;
-  }
-  noData.style.display = 'none';
- 
-  var sorted = passager.slice().reverse();
-  tbody.innerHTML = sorted.map(function(r, i) {
-    var dirLabel = r.direction === 'IND' ? '→ IND' : '← UD';
-    return '<tr>'
-      + '<td style="color:var(--text-dim)">' + (passager.length - i) + '</td>'
-      + '<td>' + (r.klokkeslet || r.tidsstempel || '—') + '</td>'
-      + '<td><span class="loc-badge">' + (r.location || '—') + '</span></td>'
-      + '<td><span class="tag ' + r.direction + '">' + dirLabel + '</span></td>'
-      + '<td style="text-align:right">' + r.count + '</td>'
-      + '</tr>';
+
+  if (charts.sensorHistory) charts.sensorHistory.destroy();
+  charts.sensorHistory = new Chart(document.getElementById('chart-sensor-history').getContext('2d'), {
+    type: 'line',
+    data: { labels: labels, datasets: [{ data: history, borderColor: '#4aaee0', fill: true, stepped: true, tension: 0 }] },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+  });
+
+  document.getElementById('sensor-table-body').innerHTML = filtered.slice().reverse().map((r, i) => {
+    let tot = 0; let idx = filtered.indexOf(r);
+    for(let j=0; j<=idx; j++) { if(filtered[j].direction==='IND') tot++; else tot=Math.max(0, tot-1); }
+    return `<tr><td>${filtered.length-i}</td><td>${r.klokkeslet}</td><td><span class="loc-badge">${r.location}</span></td><td><span class="tag ${r.direction}">${r.direction}</span></td><td style="text-align:right"><b>${tot}</b></td></tr>`;
   }).join('');
 }
- 
-function setSensorOffline() {
-  document.getElementById('sensor-dot').className = 'sensor-dot offline';
-  document.getElementById('sensor-status-text').textContent = 'Ingen forbindelse';
-}
- 
-// Sæt standarddato til i dag
-document.getElementById('sensor-filter-dato').value = sensorDagensDato();
- 
-// Lyt på filterændringer — re-render uden nyt fetch
+
+// INIT
+['filter-loc','filter-type','filter-from','filter-to','filter-time-from','filter-time-to'].forEach(id => document.getElementById(id).addEventListener('change', render));
 document.getElementById('sensor-filter-loc').addEventListener('change', renderSensor);
 document.getElementById('sensor-filter-dato').addEventListener('change', renderSensor);
- 
-// Start og auto-refresh hvert 30. sekund
+document.getElementById('btn-reset').addEventListener('click', () => { location.reload(); });
+
+setDefaultDates();
+document.getElementById('sensor-filter-dato').value = getTodayInputDate();
+fetchData();
 hentSensorData();
+setInterval(fetchData, 60000);
 setInterval(hentSensorData, 30000);
 </script>
 </body>
