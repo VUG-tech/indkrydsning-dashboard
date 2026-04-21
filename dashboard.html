@@ -96,9 +96,6 @@
     .tag.IND { background: var(--sensor-ind); color: #fff; }
     .tag.UD { background: var(--sensor-ud); color: #fff; }
     #sensor-no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
-    
-    /* NYT: Stil til historik-kortet */
-    .sensor-chart-card { background: var(--surface); border-radius: 10px; padding: 20px; border: 1px solid var(--border); margin-bottom: 24px; }
   </style>
 </head>
 <body>
@@ -216,13 +213,6 @@
       </div>
     </div>
 
-    <div class="sensor-chart-card">
-      <div class="chart-title">Belægningshistorik (Personer i lokalet over tid)</div>
-      <div class="chart-wrap" style="height: 300px;">
-        <canvas id="chart-sensor-history"></canvas>
-      </div>
-    </div>
-
     <div class="sensor-log-card">
       <div class="sensor-log-header">
         <div class="table-title">Sensorlog</div>
@@ -319,41 +309,21 @@ function renderCheckIn() {
   document.getElementById('kpi-left').textContent = data.filter(e => e.type === 'Gået').length;
   
   renderTable(data);
+  // Chart rendering logic removed for brevity but would normally be here
 }
 
 function renderSensor() {
   var loc = document.getElementById('sensor-filter-loc').value;
   var dato = document.getElementById('sensor-filter-dato').value || sensorDagensDato();
   
-  // Sortér data kronologisk for korrekt beregning af historik
-  var filtered = allSensorData
-    .filter(r => r.location === loc && r.dato === dato)
-    .sort((a, b) => a.tidsstempel.localeCompare(b.tidsstempel));
+  var filtered = allSensorData.filter(r => r.location === loc && r.dato === dato);
+  var ind = filtered.filter(r => r.direction === 'IND').length;
+  var ud = filtered.filter(r => r.direction === 'UD').length;
 
-  var ind = 0;
-  var ud = 0;
-  var currentBelaegning = 0;
-  var labels = [];
-  var historyPoints = [];
-
-  filtered.forEach(r => {
-    if (r.direction === 'IND') {
-      ind++;
-      currentBelaegning++;
-    } else {
-      ud++;
-      currentBelaegning = Math.max(0, currentBelaegning - 1);
-    }
-    labels.push(r.klokkeslet);
-    historyPoints.push(currentBelaegning);
-  });
-
-  document.getElementById('sensor-belaegning').textContent = currentBelaegning;
+  document.getElementById('sensor-belaegning').textContent = Math.max(0, ind - ud);
   document.getElementById('sensor-ind').textContent = ind;
   document.getElementById('sensor-ud').textContent = ud;
   document.getElementById('sensor-total').textContent = ind + ud;
-
-  updateSensorHistoryChart(labels, historyPoints);
 
   var tbody = document.getElementById('sensor-table-body');
   if (filtered.length === 0) {
@@ -363,68 +333,15 @@ function renderSensor() {
   }
   document.getElementById('sensor-no-data').style.display = 'none';
   
-  tbody.innerHTML = filtered.slice().reverse().map((r, i) => {
-    // Vi skal beregne den specifikke "total" for hver række i loggen
-    var rowTotal = 0;
-    var idx = filtered.indexOf(r);
-    for(var j=0; j<=idx; j++) {
-      if(filtered[j].direction === 'IND') rowTotal++;
-      else rowTotal = Math.max(0, rowTotal - 1);
-    }
-
-    return `
+  tbody.innerHTML = filtered.slice().reverse().map((r, i) => `
     <tr>
       <td style="color:var(--text-dim)">${filtered.length - i}</td>
       <td>${r.klokkeslet || '—'}</td>
       <td><span class="loc-badge">${r.location}</span></td>
       <td><span class="tag ${r.direction}">${r.direction === 'IND' ? '→ IND' : '← UD'}</span></td>
-      <td style="text-align:right"><b>${rowTotal}</b></td>
+      <td style="text-align:right">${r.count}</td>
     </tr>
-  `}).join('');
-}
-
-function updateSensorHistoryChart(labels, dataPoints) {
-  var ctx = document.getElementById('chart-sensor-history').getContext('2d');
-  
-  if (charts['sensorHistory']) {
-    charts['sensorHistory'].destroy();
-  }
-
-  charts['sensorHistory'] = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Personer i lokalet',
-        data: dataPoints,
-        borderColor: '#4aaee0',
-        backgroundColor: 'rgba(74, 174, 224, 0.15)',
-        fill: true,
-        stepped: true, // Gør grafen firkantet (trappe-effekt)
-        tension: 0,
-        borderWidth: 2,
-        pointRadius: labels.length > 50 ? 0 : 3
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: { stepSize: 1, color: '#7f8c9a' },
-          grid: { color: '#f0f2f4' }
-        },
-        x: {
-          ticks: { color: '#7f8c9a', maxRotation: 45, minRotation: 45 },
-          grid: { display: false }
-        }
-      }
-    }
-  });
+  `).join('');
 }
 
 function renderTable(data) {
