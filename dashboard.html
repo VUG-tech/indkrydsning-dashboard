@@ -30,87 +30,65 @@
     #sync-status { font-size: 12px; color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 6px; }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ae0a0; }
     .dot.loading { background: #f0a500; animation: pulse 1s infinite; }
-    .dot.error { background: #e05c4a; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
     .main { padding: 24px 32px; max-width: 1200px; margin: 0 auto; }
     .filters { background: var(--surface); border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; border: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
     .filter-group { display: flex; flex-direction: column; gap: 5px; }
-    .filter-group label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
-    .filter-group select, .filter-group input[type="date"] { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); min-width: 130px; }
-    .time-range { display: flex; gap: 8px; align-items: center; }
-    .time-range span { font-size: 12px; color: var(--text-dim); }
-    .time-range input[type="time"] { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
-    .btn-reset { font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text-dim); cursor: pointer; margin-left: auto; }
-    .btn-reset:hover { border-color: var(--blue); color: var(--blue); }
+    .filter-group label { font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-dim); }
+    .filter-group select, .filter-group input[type="date"] { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; padding: 7px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); min-width: 130px; }
     .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
     .kpi-card { background: var(--surface); border-radius: 10px; padding: 16px 20px; border: 1px solid var(--border); }
-    .kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); margin-bottom: 6px; }
+    .kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; }
     .kpi-value { font-size: 32px; font-weight: 700; color: var(--text); }
-    .kpi-sub { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
     .kpi-card.came .kpi-value { color: var(--came); }
     .kpi-card.left .kpi-value { color: var(--left); }
     .kpi-card.total .kpi-value { color: var(--blue); }
     .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
     .chart-card { background: var(--surface); border-radius: 10px; padding: 20px; border: 1px solid var(--border); }
-    .chart-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+    .chart-title { font-size: 13px; font-weight: 700; margin-bottom: 16px; }
     .chart-wrap { position: relative; height: 260px; }
     .chart-card.full { grid-column: 1 / -1; }
     .table-card { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
     .table-header { padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-    .table-title { font-size: 13px; font-weight: 700; }
-    .table-count { font-size: 12px; color: var(--text-dim); }
     .table-wrap { overflow-x: auto; max-height: 300px; overflow-y: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 13px; }
     thead tr { background: var(--bg); position: sticky; top: 0; }
-    th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); border-bottom: 1px solid var(--border); }
+    th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-dim); border-bottom: 1px solid var(--border); }
     td { padding: 9px 16px; border-bottom: 1px solid #f0f2f4; }
-    tr:hover td { background: #f7f9fb; }
     .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 3px; color: #fff; }
     .tag.Kommet { background: var(--came); }
     .tag.Gået { background: var(--left); }
     .loc-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; background: var(--navy); color: #fff; }
-    #no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
-
+    
     /* SENSOR SEKTION */
     .sensor-section { margin-top: 40px; }
     .section-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-    .section-divider-title { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; }
+    .section-divider-title { font-size: 13px; font-weight: 700; white-space: nowrap; }
     .section-divider-line { flex: 1; height: 1px; background: var(--border); }
-    .section-divider-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: var(--navy); color: #fff; }
     .sensor-kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 24px; }
     .sensor-kpi-card { background: var(--surface); border-radius: 10px; padding: 16px 20px; border: 1px solid var(--border); position: relative; overflow: hidden; }
     .sensor-kpi-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .sensor-kpi-card.belaegning::after { background: var(--sensor-accent); }
     .sensor-kpi-card.sensor-ind::after { background: var(--sensor-ind); }
     .sensor-kpi-card.sensor-ud::after { background: var(--sensor-ud); }
-    .sensor-kpi-card.sensor-total::after { background: #aaa; }
-    .sensor-kpi-card.belaegning .kpi-value { color: var(--sensor-accent); font-size: 40px; }
-    .sensor-kpi-card.sensor-ind .kpi-value { color: var(--sensor-ind); }
-    .sensor-kpi-card.sensor-ud .kpi-value { color: var(--sensor-ud); }
     .sensor-status { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-dim); margin-top: 4px; }
     .sensor-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ae0a0; animation: pulse 2s infinite; }
-    .sensor-dot.offline { background: var(--left); animation: none; }
     .sensor-log-card { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; }
-    .sensor-log-header { padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-    .sensor-log-wrap { overflow-x: auto; max-height: 280px; overflow-y: auto; }
-    .tag.IND { background: var(--sensor-ind); color: #fff; }
-    .tag.UD { background: var(--sensor-ud); color: #fff; }
-    #sensor-no-data { text-align: center; padding: 40px; color: var(--text-dim); font-size: 14px; display: none; }
+    .sensor-log-wrap { max-height: 280px; overflow-y: auto; }
+    .tag.IND { background: var(--sensor-ind); }
+    .tag.UD { background: var(--sensor-ud); }
   </style>
 </head>
 <body>
 <header>
   <div>
     <div class="logo">Easy<span>Kom</span> Dashboard</div>
-    <div class="header-sub">vesterbro.easykom.net — Indkrydsning oversigt</div>
+    <div class="header-sub">Indkrydsning & Sensor Oversigt</div>
   </div>
-  <div id="sync-status">
-    <div class="dot loading" id="sync-dot"></div>
-    <span id="sync-text">Henter data...</span>
-  </div>
+  <div id="sync-status"><div class="dot loading" id="sync-dot"></div><span id="sync-text">Henter data...</span></div>
 </header>
+
 <div class="main">
-  
   <div class="filters">
     <div class="filter-group">
       <label>Lokation</label>
@@ -122,14 +100,6 @@
       </select>
     </div>
     <div class="filter-group">
-      <label>Type</label>
-      <select id="filter-type">
-        <option value="">Kommet + Gået</option>
-        <option value="Kommet">Kun Kommet</option>
-        <option value="Gået">Kun Gået</option>
-      </select>
-    </div>
-    <div class="filter-group">
       <label>Fra dato</label>
       <input type="date" id="filter-from">
     </div>
@@ -137,33 +107,23 @@
       <label>Til dato</label>
       <input type="date" id="filter-to">
     </div>
-    <div class="filter-group">
-      <label>Tidspunkt på dagen</label>
-      <div class="time-range">
-        <input type="time" id="filter-time-from" value="00:00">
-        <span>–</span>
-        <input type="time" id="filter-time-to" value="23:59">
-      </div>
-    </div>
-    <button class="btn-reset" id="btn-reset">↺ Nulstil filtre</button>
+    <button class="btn-reset" onclick="location.reload()">↺ Nulstil</button>
   </div>
 
   <div class="kpi-row">
-    <div class="kpi-card total"><div class="kpi-label">Total</div><div class="kpi-value" id="kpi-total">—</div><div class="kpi-sub">registreringer</div></div>
-    <div class="kpi-card came"><div class="kpi-label">Kommet</div><div class="kpi-value" id="kpi-came">—</div><div class="kpi-sub">check-in</div></div>
-    <div class="kpi-card left"><div class="kpi-label">Gået</div><div class="kpi-value" id="kpi-left">—</div><div class="kpi-sub">check-out</div></div>
-    <div class="kpi-card"><div class="kpi-label">Aktive lokationer</div><div class="kpi-value" id="kpi-locs">—</div><div class="kpi-sub">i valgt periode</div></div>
+    <div class="kpi-card total"><div class="kpi-label">Total</div><div class="kpi-value" id="kpi-total">—</div></div>
+    <div class="kpi-card came"><div class="kpi-label">Kommet</div><div class="kpi-value" id="kpi-came">—</div></div>
+    <div class="kpi-card left"><div class="kpi-label">Gået</div><div class="kpi-value" id="kpi-left">—</div></div>
+    <div class="kpi-card"><div class="kpi-label">Lokationer</div><div class="kpi-value" id="kpi-locs">—</div></div>
   </div>
 
   <div class="charts-row">
-    <div class="chart-card"><div class="chart-title">Kommet vs Gået per lokation</div><div class="chart-wrap"><canvas id="chart-loc"></canvas></div></div>
-    <div class="chart-card"><div class="chart-title">Fordeling per time på dagen</div><div class="chart-wrap"><canvas id="chart-hour"></canvas></div></div>
-    <div class="chart-card full"><div class="chart-title">Aktivitet over tid (per dag)</div><div class="chart-wrap"><canvas id="chart-timeline"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Lokationsfordeling</div><div class="chart-wrap"><canvas id="chart-loc"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Timefordeling</div><div class="chart-wrap"><canvas id="chart-hour"></canvas></div></div>
   </div>
 
   <div class="table-card">
-    <div class="table-header"><div class="table-title">Alle registreringer</div><div class="table-count" id="table-count"></div></div>
-    <div id="no-data">Ingen data matcher dine filtre.</div>
+    <div class="table-header"><div class="table-title">App Registreringer</div><div id="table-count" class="table-count"></div></div>
     <div class="table-wrap"><table><thead><tr><th>#</th><th>Dato</th><th>Tid</th><th>Type</th><th>Lokation</th></tr></thead><tbody id="table-body"></tbody></table></div>
   </div>
 
@@ -171,7 +131,6 @@
     <div class="section-divider">
       <div class="section-divider-title">Indgangssensor</div>
       <div class="section-divider-line"></div>
-      <div class="section-divider-badge">Live belægning</div>
     </div>
 
     <div class="filters">
@@ -180,8 +139,6 @@
         <select id="sensor-filter-loc">
           <option value="HJEMMETEST">HJEMMETEST</option>
           <option value="AB8">AB8</option>
-          <option value="ESK7">ESK7</option>
-          <option value="AB10">AB10</option>
         </select>
       </div>
       <div class="filter-group">
@@ -191,194 +148,175 @@
     </div>
 
     <div class="sensor-kpi-row">
-      <div class="sensor-kpi-card belaegning">
-        <div class="kpi-label">Inde nu</div>
-        <div class="kpi-value" id="sensor-belaegning">—</div>
-        <div class="sensor-status">
-          <div class="sensor-dot" id="sensor-dot"></div>
-          <span id="sensor-status-text">Henter...</span>
-        </div>
-      </div>
-      <div class="sensor-kpi-card sensor-ind">
-        <div class="kpi-label">Passager ind</div>
-        <div class="kpi-value" id="sensor-ind">—</div>
-      </div>
-      <div class="sensor-kpi-card sensor-ud">
-        <div class="kpi-label">Passager ud</div>
-        <div class="kpi-value" id="sensor-ud">—</div>
-      </div>
-      <div class="sensor-kpi-card sensor-total">
-        <div class="kpi-label">Total passager</div>
-        <div class="kpi-value" id="sensor-total">—</div>
-      </div>
+      <div class="sensor-kpi-card belaegning"><div class="kpi-label">Inde nu</div><div class="kpi-value" id="sensor-belaegning">—</div></div>
+      <div class="sensor-kpi-card sensor-ind"><div class="kpi-label">Ind</div><div class="kpi-value" id="sensor-ind">—</div></div>
+      <div class="sensor-kpi-card sensor-ud"><div class="kpi-label">Ud</div><div class="kpi-value" id="sensor-ud">—</div></div>
+    </div>
+
+    <div class="chart-card" style="margin-bottom: 24px;">
+      <div class="chart-title">Belægningshistorik (Sensor)</div>
+      <div class="chart-wrap"><canvas id="chart-sensor-history"></canvas></div>
     </div>
 
     <div class="sensor-log-card">
-      <div class="sensor-log-header">
-        <div class="table-title">Sensorlog</div>
-        <div class="table-count" id="sensor-log-count"></div>
-      </div>
-      <div id="sensor-no-data">Ingen sensordata.</div>
-      <div class="sensor-log-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th><th>Tidspunkt</th><th>Lokation</th><th>Retning</th><th style="text-align:right">Total</th>
-            </tr>
-          </thead>
-          <tbody id="sensor-table-body"></tbody>
-        </table>
-      </div>
+      <div class="table-header"><div class="table-title">Sensorlog</div></div>
+      <div class="sensor-log-wrap"><table><thead><tr><th>#</th><th>Tid</th><th>Retning</th><th style="text-align:right">Total</th></tr></thead><tbody id="sensor-table-body"></tbody></table></div>
     </div>
   </div>
 </div>
 
 <script>
-// CONFIG
 var SHEET_ID = '1aDO-EDMx9BQ5vPyTz2zpHAVT9ezQZc_nJec4DQUVW9k';
-var SHEET_NAME = 'Sheet1';
-var SENSOR_SHEET_NAME = 'Occupancy';
 var allData = [];
 var allSensorData = [];
 var charts = {};
 
-// UTILS
-function sensorDagensDato() { return new Date().toISOString().split('T')[0]; }
-function parseDanishDate(str) {
-  if (!str) return null;
-  var parts = str.split(/[./-]/);
-  if (parts.length < 3) return null;
-  return new Date(parts[2], parts[1]-1, parts[0]);
+function init() {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('filter-from').value = today;
+  document.getElementById('filter-to').value = today;
+  document.getElementById('sensor-filter-dato').value = today;
+  fetchAll();
+  setInterval(fetchAll, 5000);
 }
 
-// FETCHING DATA
-function fetchAll() {
-  // Fetch Check-in Data
-  var url1 = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SHEET_NAME);
-  fetch(url1).then(r => r.text()).then(csv => {
-    allData = parseCSV(csv);
-    renderCheckIn();
-    setStatus('active', 'Live data opdateret');
-  });
+// HJÆLPEFUNKTION: Standardiserer datoer til YYYY-MM-DD
+function standardizeDate(dateStr) {
+  if (!dateStr) return "";
+  let parts = dateStr.split(/[./-]/);
+  if (parts.length !== 3) return dateStr;
+  if (parts[0].length === 4) return `${parts[0]}-${parts[1]}-${parts[2]}`; // Allerede YYYY-MM-DD
+  return `${parts[2]}-${parts[1]}-${parts[0]}`; // DD.MM.YYYY -> YYYY-MM-DD
+}
 
-  // Fetch Sensor Data (The Live Part)
-  var url2 = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(SENSOR_SHEET_NAME);
-  fetch(url2).then(r => r.text()).then(csv => {
-    allSensorData = parseSensorCSV(csv);
-    document.getElementById('sensor-dot').className = 'sensor-dot';
-    document.getElementById('sensor-status-text').textContent = 'Live · Opdateret ' + new Date().toLocaleTimeString();
-    renderSensor();
-  }).catch(setSensorOffline);
+function fetchAll() {
+  fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Sheet1`)
+    .then(r => r.text()).then(csv => {
+      allData = parseCSV(csv);
+      renderCheckIn();
+      document.getElementById('sync-dot').className = 'dot';
+      document.getElementById('sync-text').textContent = 'Opdateret';
+    });
+
+  fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Occupancy`)
+    .then(r => r.text()).then(csv => {
+      allSensorData = parseSensorCSV(csv);
+      renderSensor();
+    });
 }
 
 function parseCSV(csv) {
-  var lines = csv.trim().split('\n');
-  return lines.slice(1).map(line => {
+  return csv.trim().split('\n').slice(1).map(line => {
     var cols = line.split('","').map(c => c.replace(/^"|"$/g, '').trim());
-    return { timestamp: cols[0], date: cols[1], time: (cols[2]||'').replace(/\./g, ':'), type: cols[3], location: cols[4] };
+    return { date: cols[1], time: cols[2], type: cols[3], location: cols[4] };
   });
 }
 
 function parseSensorCSV(csv) {
-  var lines = csv.trim().split('\n');
-  return lines.slice(1).map(line => {
+  return csv.trim().split('\n').slice(1).map(line => {
     var cols = line.split('","').map(c => c.replace(/^"|"$/g, '').trim());
-    return { tidsstempel: cols[0], location: cols[1], count: cols[2], direction: cols[3], dato: cols[4], klokkeslet: cols[5] };
+    return { ts: cols[0], loc: cols[1], dir: cols[3], date: cols[4], time: cols[5] };
   });
 }
 
-// RENDERING
 function renderCheckIn() {
-  var loc = document.getElementById('filter-loc').value;
-  var from = document.getElementById('filter-from').value;
-  var to = document.getElementById('filter-to').value;
-  
-  var data = allData.filter(e => {
+  const loc = document.getElementById('filter-loc').value;
+  const from = document.getElementById('filter-from').value;
+  const to = document.getElementById('filter-to').value;
+
+  const filtered = allData.filter(e => {
+    const d = standardizeDate(e.date);
     if (loc && e.location !== loc) return false;
-    var d = parseDanishDate(e.date);
-    if (d) {
-      var ymd = d.toISOString().split('T')[0];
-      if (from && ymd < from) return false;
-      if (to && ymd > to) return false;
-    }
+    if (from && d < from) return false;
+    if (to && d > to) return false;
     return true;
   });
 
-  document.getElementById('kpi-total').textContent = data.length;
-  document.getElementById('kpi-came').textContent = data.filter(e => e.type === 'Kommet').length;
-  document.getElementById('kpi-left').textContent = data.filter(e => e.type === 'Gået').length;
+  document.getElementById('kpi-total').textContent = filtered.length;
+  document.getElementById('kpi-came').textContent = filtered.filter(e => e.type === 'Kommet').length;
+  document.getElementById('kpi-left').textContent = filtered.filter(e => e.type === 'Gået').length;
   
-  renderTable(data);
-  // Chart rendering logic removed for brevity but would normally be here
+  // Opdater grafer for App-data
+  updateAppCharts(filtered);
+  
+  document.getElementById('table-body').innerHTML = filtered.slice().reverse().map((e, i) => `
+    <tr><td>${filtered.length - i}</td><td>${e.date}</td><td>${e.time}</td>
+    <td><span class="tag ${e.type}">${e.type}</span></td><td><span class="loc-badge">${e.location}</span></td></tr>
+  `).join('');
+}
+
+function updateAppCharts(data) {
+  // Lokationsfordeling
+  const locs = {}; data.forEach(e => locs[e.location] = (locs[e.location] || 0) + 1);
+  renderChart('chart-loc', 'bar', Object.keys(locs), Object.values(locs), '#4aaee0');
+
+  // Timefordeling
+  const hours = Array(24).fill(0);
+  data.forEach(e => { if(e.time) { const h = parseInt(e.time.split(/[:.]/)[0]); if(!isNaN(h)) hours[h]++; }});
+  renderChart('chart-hour', 'line', hours.map((_,i)=>i+':00'), hours, '#2eaaa0');
 }
 
 function renderSensor() {
-  var loc = document.getElementById('sensor-filter-loc').value;
-  var dato = document.getElementById('sensor-filter-dato').value || sensorDagensDato();
+  const loc = document.getElementById('sensor-filter-loc').value;
+  const dato = document.getElementById('sensor-filter-dato').value;
   
-  var filtered = allSensorData.filter(r => r.location === loc && r.dato === dato);
-  var ind = filtered.filter(r => r.direction === 'IND').length;
-  var ud = filtered.filter(r => r.direction === 'UD').length;
+  const filtered = allSensorData
+    .filter(r => r.loc === loc && r.date === dato)
+    .sort((a,b) => a.ts.localeCompare(b.ts));
 
-  document.getElementById('sensor-belaegning').textContent = Math.max(0, ind - ud);
+  let current = 0, ind = 0, ud = 0;
+  const labels = [], history = [];
+
+  filtered.forEach(r => {
+    if (r.dir === 'IND') { ind++; current++; }
+    else { ud++; current = Math.max(0, current - 1); }
+    labels.push(r.time);
+    history.push(current);
+  });
+
+  document.getElementById('sensor-belaegning').textContent = current;
   document.getElementById('sensor-ind').textContent = ind;
   document.getElementById('sensor-ud').textContent = ud;
-  document.getElementById('sensor-total').textContent = ind + ud;
 
-  var tbody = document.getElementById('sensor-table-body');
-  if (filtered.length === 0) {
-    tbody.innerHTML = '';
-    document.getElementById('sensor-no-data').style.display = 'block';
-    return;
-  }
-  document.getElementById('sensor-no-data').style.display = 'none';
-  
-  tbody.innerHTML = filtered.slice().reverse().map((r, i) => `
-    <tr>
-      <td style="color:var(--text-dim)">${filtered.length - i}</td>
-      <td>${r.klokkeslet || '—'}</td>
-      <td><span class="loc-badge">${r.location}</span></td>
-      <td><span class="tag ${r.direction}">${r.direction === 'IND' ? '→ IND' : '← UD'}</span></td>
-      <td style="text-align:right">${r.count}</td>
-    </tr>
-  `).join('');
+  renderChart('chart-sensor-history', 'line', labels, history, '#4aaee0', true);
+
+  document.getElementById('sensor-table-body').innerHTML = filtered.slice().reverse().map((r, i) => {
+    let rowTot = 0;
+    const idx = filtered.indexOf(r);
+    for(let j=0; j<=idx; j++) {
+      if(filtered[j].dir === 'IND') rowTot++; else rowTot = Math.max(0, rowTot-1);
+    }
+    return `<tr><td>${filtered.length-i}</td><td>${r.time}</td><td><span class="tag ${r.dir}">${r.dir}</span></td><td style="text-align:right"><b>${rowTot}</b></td></tr>`;
+  }).join('');
 }
 
-function renderTable(data) {
-  var tbody = document.getElementById('table-body');
-  document.getElementById('table-count').textContent = data.length + ' rækker';
-  tbody.innerHTML = data.slice().reverse().map((e, i) => `
-    <tr>
-      <td style="color:var(--text-dim)">${data.length - i}</td>
-      <td>${e.date||''}</td><td>${e.time||''}</td>
-      <td><span class="tag ${e.type}">${e.type||''}</span></td>
-      <td><span class="loc-badge">${e.location||'—'}</span></td>
-    </tr>
-  `).join('');
+function renderChart(id, type, labels, data, color, stepped = false) {
+  if (charts[id]) charts[id].destroy();
+  const ctx = document.getElementById(id).getContext('2d');
+  charts[id] = new Chart(ctx, {
+    type: type,
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        borderColor: color,
+        backgroundColor: color + '33',
+        fill: true,
+        stepped: stepped,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+    }
+  });
 }
 
-function setStatus(state, text) {
-  document.getElementById('sync-dot').className = 'dot ' + (state === 'active' ? '' : state);
-  document.getElementById('sync-text').textContent = text;
-}
-
-function setSensorOffline() {
-  document.getElementById('sensor-dot').className = 'sensor-dot offline';
-  document.getElementById('sensor-status-text').textContent = 'Ingen forbindelse';
-}
-
-// INITIALIZE & AUTO-REFRESH
-document.getElementById('sensor-filter-dato').value = sensorDagensDato();
-document.getElementById('filter-from').value = sensorDagensDato();
-document.getElementById('filter-to').value = sensorDagensDato();
-
-fetchAll();
-setInterval(fetchAll, 3000); // REFRESH EVERY 3 SECONDS
-
-// Listeners
-['filter-loc','filter-type','filter-from','filter-to','sensor-filter-loc','sensor-filter-dato'].forEach(id => {
-  document.getElementById(id).addEventListener('change', () => { renderCheckIn(); renderSensor(); });
-});
+document.querySelectorAll('select, input').forEach(el => el.addEventListener('change', () => { renderCheckIn(); renderSensor(); }));
+init();
 </script>
 </body>
 </html>
